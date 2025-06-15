@@ -1,0 +1,140 @@
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Store, ArrowLeft, DollarSign, Package, ShoppingCart, Users, Plus, Eye, BarChart } from "lucide-react";
+import { Link } from "wouter";
+
+export default function SellerDashboard() {
+  const { signOut } = useAuth();
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Navigation */}
+      <nav className="bg-white shadow-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-3">
+              <Link href="/">
+                <Button variant="ghost" size="sm" className="text-gray-500 hover:text-gray-700">
+                  <ArrowLeft className="w-4 h-4" />
+                </Button>
+              </Link>
+              <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center">
+                <Store className="text-white text-sm w-4 h-4" />
+              </div>
+              <span className="font-semibold text-gray-900">Seller Dashboard</span>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Badge className="px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">
+                Approved Seller
+              </Badge>
+              <button 
+                onClick={signOut}
+                className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+              >
+                Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Seller</h1>
+          <p className="text-gray-600">Manage your products and track your sales performance</p>
+        </div>
+
+        {/* Dashboard Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600">Total Sales</p>
+                <p className="text-2xl font-bold text-gray-900">$12,345</p>
+              </div>
+              <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                <DollarSign className="text-green-600 w-5 h-5" />
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600">Products</p>
+                <p className="text-2xl font-bold text-gray-900">24</p>
+              </div>
+              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                <Package className="text-blue-600 w-5 h-5" />
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600">Orders</p>
+                <p className="text-2xl font-bold text-gray-900">156</p>
+              </div>
+              <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
+                <ShoppingCart className="text-amber-600 w-5 h-5" />
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600">Customers</p>
+                <p className="text-2xl font-bold text-gray-900">89</p>
+              </div>
+              <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                <Users className="text-purple-600 w-5 h-5" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <h3 className="font-semibold text-gray-900 mb-4">Quick Actions</h3>
+            <div className="space-y-3">
+              <button className="w-full text-left px-4 py-3 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-colors flex items-center">
+                <Plus className="text-green-600 mr-3 w-4 h-4" />
+                Add New Product
+              </button>
+              <button className="w-full text-left px-4 py-3 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-colors flex items-center">
+                <Eye className="text-blue-600 mr-3 w-4 h-4" />
+                View Orders
+              </button>
+              <button className="w-full text-left px-4 py-3 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-colors flex items-center">
+                <BarChart className="text-purple-600 mr-3 w-4 h-4" />
+                Sales Analytics
+              </button>
+            </div>
+          </div>
+          
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <h3 className="font-semibold text-gray-900 mb-4">Recent Activity</h3>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-gray-700">New order received</span>
+              </div>
+              <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span className="text-sm text-gray-700">Product updated</span>
+              </div>
+              <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
+                <span className="text-sm text-gray-700">Payment processed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
